@@ -3,7 +3,6 @@ module Day1 (run) where
 import Utils (parseIntsFromStrings, readInputFile)
 
 part1 :: [Int] -> Int
-part1 [] = 0
 part1 x = part1' 0 x
 
 part1' :: Int -> [Int] -> Int

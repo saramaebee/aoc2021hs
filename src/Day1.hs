@@ -7,7 +7,7 @@ part1 x = part1' 0 x
 
 part1' :: Int -> [Int] -> Int
 part1' a [] = a
-part1' a (l: ls) = if length ls > 0 then part1' (a + (if l >= (head ls) then 0 else 1)) ls else a
+part1' a (l: ls) = part1' (a + (if l >= (head ls) then 0 else 1)) ls
 
 part2 :: [Int] -> Int
 part2 x = part2' 0 x

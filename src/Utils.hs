@@ -1,4 +1,4 @@
-module Utils (run_day, readInputFile, parseIntsFromStrings) where
+module Utils (run_day, readInt, readInputFile, parseIntsFromStrings) where
 
 readInputFile :: FilePath -> IO [String]
 readInputFile x = do

@@ -5,11 +5,12 @@ import Utils (readInt, readInputFile)
 run :: [String] -> (Int, Int)
 run l = (part1 l, -1)
 
+-- part 1
+type Pos = (Int, Int) -- Depth, HorPoz 
 data Dir = Down | Up | Forward 
-type ChPosReq = (Int, Dir)
-type Pos = (Int, Int)
 data Dir' = Depth | HorPoz
-type ChPosReq' = (Int, Dir')
+type ChPosReq = (Int, Dir) -- Down, Up, Forward
+type ChPosReq' = (Int, Dir') -- Depth, HorPoz
 
 part1' :: Pos -> [String] -> Pos 
 part1' p [] = p 
@@ -37,3 +38,16 @@ parseDir :: String -> Dir
 parseDir "forward" = Forward 
 parseDir "down" = Down 
 parseDir "up" = Up
+
+-- part 2 - WIP
+type Position = (Int, Int, Int) -- Aim, Depth, HorPoz
+type ChangePositionRequest = (Int, Int, Dir)-- Aim, Distance, Direction
+
+changePos' :: Position -> ChangePositionRequest -> Position
+changePos' (aim, direction, horPoz) (aim', distance', direction') 
+
+parseRequest' :: String -> ChangePositionRequest
+parseRequest' s = let c = words s in 
+
+parseStringListToCommand :: [String] -> ChangePositionRequest
+parseStringListToCommand ("forward":ls) = (0,...) -- and here is where i got stuck

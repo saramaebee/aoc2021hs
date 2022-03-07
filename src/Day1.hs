@@ -3,11 +3,12 @@ module Day1 (run) where
 import Utils (parseIntsFromStrings, readInputFile)
 
 part1 :: [Int] -> Int
-part1 x = part1' 0 x
+part1 x = fst $ foldl part1' (0, -1) x
 
-part1' :: Int -> [Int] -> Int
-part1' a [] = a
-part1' a (l: ls) = if length ls > 0 then part1' (a + (if l >= (head ls) then 0 else 1)) ls else a
+-- increases, prev_depth
+part1' :: (Int, Int) -> Int -> (Int, Int) 
+part1' (acc, -1) newDepth = (acc, newDepth)
+part1' (acc, prevDepth) newDepth = (acc + if prevDepth < newDepth then 1 else 0, newDepth)
 
 part2 :: [Int] -> Int
 part2 x = part2' 0 x

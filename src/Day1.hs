@@ -18,3 +18,4 @@ part2' a (l:ls) = if length ls > 1 then part2' (a + (if (l + sum (take 2 ls) >= 
 
 run :: [String] -> (Int, Int)
 run i' = (let i = parseIntsFromStrings i' in (part1 i, part2 i)) 
+

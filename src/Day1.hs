@@ -14,6 +14,6 @@ part2 :: [Int] -> Int
 part2 ls = fst $ foldl part1' (0, Nothing) $ map sum $ Utils.windows ls 3
 
 run :: [String] -> (Int, Int)
-run i' = (let i = parseIntsFromStrings i' in (part1 i, part2 i)) 
+run i' = (part1 i, part2 i) where i = parseIntsFromStrings i' 
 
 

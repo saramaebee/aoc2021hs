@@ -40,14 +40,14 @@ parseDir "down" = Down
 parseDir "up" = Up
 
 -- part 2 - WIP
-type Position = (Int, Int, Int) -- Aim, Depth, HorPoz
-type ChangePositionRequest = (Int, Int, Dir)-- Aim, Distance, Direction
+-- type Position = (Int, Int, Int) -- Aim, Depth, HorPoz
+-- type ChangePositionRequest = (Int, Int, Dir)-- Aim, Distance, Direction
 
-changePos' :: Position -> ChangePositionRequest -> Position
-changePos' (aim, direction, horPoz) (aim', distance', direction') 
+-- changePos' :: Position -> ChangePositionRequest -> Position
+-- changePos' (aim, direction, horPoz) (aim', distance', direction') 
 
-parseRequest' :: String -> ChangePositionRequest
-parseRequest' s = let c = words s in 
+-- parseRequest' :: String -> ChangePositionRequest
+-- parseRequest' s = let c = words s in 
 
-parseStringListToCommand :: [String] -> ChangePositionRequest
-parseStringListToCommand ("forward":ls) = (0,...) -- and here is where i got stuck
+-- parseStringListToCommand :: [String] -> ChangePositionRequest
+-- parseStringListToCommand ("forward":ls) = (0,...) -- and here is where i got stuck

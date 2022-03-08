@@ -1,20 +1,19 @@
 module Day1 (run) where
 
-import Utils (parseIntsFromStrings, readInputFile)
+import Utils (parseIntsFromStrings, windows,  readInputFile)
 
 part1 :: [Int] -> Int
-part1 x = part1' 0 x
+part1 x = fst $ foldl part1' (0, Nothing) x
 
-part1' :: Int -> [Int] -> Int
-part1' a [] = a
-part1' a (l: ls) = if length ls > 0 then part1' (a + (if l >= (head ls) then 0 else 1)) ls else a
+-- increases, prev_depth
+part1' :: (Int, Maybe Int) -> Int -> (Int, Maybe Int) 
+part1' (acc, Nothing) newDepth = (acc, Just newDepth)
+part1' (acc, Just prevDepth) newDepth = (if prevDepth < newDepth then succ acc else acc, Just newDepth)
 
 part2 :: [Int] -> Int
-part2 x = part2' 0 x
-
-part2' :: Int -> [Int] -> Int
-part2' a (l:ls) = if length ls > 1 then part2' (a + (if (l + sum (take 2 ls) >= sum (take 3 ls)) then 0 else 1)) ls else a
-
+part2 ls = fst $ foldl part1' (0, Nothing) $ map sum $ Utils.windows ls 3
 
 run :: [String] -> (Int, Int)
-run i' = (let i = parseIntsFromStrings i' in (part1 i, part2 i)) 
+run i' = (part1 i, part2 i) where i = parseIntsFromStrings i' 
+
+

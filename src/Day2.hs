@@ -10,7 +10,7 @@ part1 :: [Command] -> Int
 part1 c = d * hP where (d, hP, _) = foldl runCommand (0, 0, Nothing) c
 
 part2 :: [Command] -> Int
-part2 c = d * hP where (d, hP, a) = foldl runCommand (0, 0, Just 0) c 
+part2 c = d * hP where (d, hP, a) = foldl runCommand' (0, 0, Just 0) c 
 
 type Depth = Int
 type HorizonalPosition = Int
@@ -21,21 +21,20 @@ type Position = (Depth, HorizonalPosition, Maybe Aim)
 type Command = (Direction, Length)
 
 runCommand :: Position -> Command -> Position
--- part 1
 runCommand (d, h, Nothing) (Forward, len) = (d, h + len, Nothing)
 runCommand (d, h, Nothing) (Up, len) = (d - len, h, Nothing) 
 runCommand (d, h, Nothing) (Down, len) = (d + len, h, Nothing)
 
--- part 2
-runCommand (d, h, Just a) (Forward, len) = (d + (a * len), h + len, Just a)
-runCommand (d, h, Just a) (Up, len) = (d, h, Just $ a - len) 
-runCommand (d, h, Just a) (Down, len) = (d, h, Just $ a + len)
+runCommand' :: Position -> Command -> Position
+runCommand' (d, h, Just a) (Forward, len) = (d + (a * len), h + len, Just a)
+runCommand' (d, h, Just a) (Up, len) = (d, h, Just $ a - len) 
+runCommand' (d, h, Just a) (Down, len) = (d, h, Just $ a + len)
 
 
 
 parseCommand :: String -> Command
 parseCommand s = (d, l) where
-	(d':l') = words s
+	(d':l':_) = words s
 	d = parseDirection d' 
 	l = parseLength l' 
 

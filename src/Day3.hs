@@ -1,6 +1,6 @@
 module Day3 (run) where 
 
-import Utils (toDec, rotateLeft)
+import Utils (toDec, rotateRight)
 import Data.Bits (complement) 
 import Data.List (intercalate)
 
@@ -14,8 +14,8 @@ part1 b = accs where
 	
 solve :: [Acc] -> Int 
 solve accs = g * e where
-	g = toDec $ foldl gamma  "" accs'
-	e = toDec $ foldl epsilon "" accs'
+	g = toDec $ foldl gamma  "" accs
+	e = toDec $ foldl epsilon "" accs
 
 gamma :: String -> Acc -> String
 gamma s (z, o) | z > o = "0" ++ s

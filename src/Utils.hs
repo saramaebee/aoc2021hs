@@ -1,4 +1,4 @@
-module Utils (toDec, rotateLeft, windows, run_day, readInt, readInputFile, parseIntsFromStrings) where
+module Utils (toDec, rotateRight, rotateLeft, windows, run_day, readInt, readInputFile, parseIntsFromStrings) where
 
 import Data.List
 import Data.Char (digitToInt)
@@ -38,5 +38,5 @@ windows list@(_:t) windowSize
 rotateLeft :: [[a]] -> [[a]]
 rotateLeft = reverse . transpose
 
-rotateLeft :: [[a]] -> [[a]]
+rotateRight :: [[a]] -> [[a]]
 rotateRight = transpose . reverse

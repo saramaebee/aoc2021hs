@@ -35,7 +35,7 @@ runCommand (d, h, Just a) (Down, len) = (d, h, Just $ a + len)
 
 parseCommand :: String -> Command
 parseCommand s = (d, l) where
-	(d':l':_) = words s
+	(d':l') = words s
 	d = parseDirection d' 
 	l = parseLength l' 
 

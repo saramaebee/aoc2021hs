@@ -1,10 +1,17 @@
-module Utils (windows, run_day, readInt, readInputFile, parseIntsFromStrings) where
+module Utils (toDec, rotateLeft, windows, run_day, readInt, readInputFile, parseIntsFromStrings) where
+
+import Data.List
+import Data.Char (digitToInt)
 
 readInputFile :: FilePath -> IO [String]
 readInputFile x = do
     contents <- readFile x
     pure $ lines contents
 
+
+-- shamelessly stolen from https://stackoverflow.com/questions/5921573/convert-a-string-representing-a-binary-number-to-a-base-10-string-haskell
+toDec :: String -> Int
+toDec = foldl' (\acc x -> acc * 2 + digitToInt x) 0
 
 parseIntsFromStrings :: [String] -> [Int]
 parseIntsFromStrings x = [readInt n | n <- x]
@@ -28,3 +35,8 @@ windows list@(_:t) windowSize
 		window = take windowSize list
 		rest = windows t windowSize
 
+rotateLeft :: [[a]] -> [[a]]
+rotateLeft = reverse . transpose
+
+rotateLeft :: [[a]] -> [[a]]
+rotateRight = transpose . reverse

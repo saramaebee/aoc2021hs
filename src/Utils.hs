@@ -1,4 +1,4 @@
-module Utils (toDec, rotateRight, rotateLeft, windows, run_day, readInt, readInputFile, parseIntsFromStrings) where
+module Utils (toDec, split, rotateRight, rotateLeft, windows, run_day, readInt, readInputFile, parseIntsFromStrings, chunksOf, isNothing) where
 
 import Data.List
 import Data.Char (digitToInt)
@@ -16,9 +16,24 @@ toDec = foldl' (\acc x -> acc * 2 + digitToInt x) 0
 parseIntsFromStrings :: [String] -> [Int]
 parseIntsFromStrings x = [readInt n | n <- x]
 
+split :: Char -> String -> [String]
+split delim str = case break (== delim) str of
+                (a, delim:b) -> a : split delim b
+                (a, "")    -> [a]
+
+
+isNothing :: Maybe a -> Bool
+isNothing (Just _) = False
+isNothing Nothing  = True
 
 readInt :: String -> Int
 readInt = read
+
+chunksOf :: Int -> [a] -> [[a]]
+chunksOf _ [] = []
+chunksOf n xs = ys : chunksOf n zs
+  where 
+    (ys, zs) = splitAt n xs
 
 run_day :: IO [String] -> ([String] -> (Int, Int)) -> IO () 
 run_day ls f = do

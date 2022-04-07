@@ -56,10 +56,10 @@ co2Rate input = toDec $ head $ leastCommonBit 0 input
 
 leastCommonBit :: Int -> [String] -> [String]
 leastCommonBit pos list | length list == 1 = list
-                         | otherwise = leastCommonBit (pos+1) [k | k <- list, k !! pos == lcb] where
-    ls     = [ls' !! pos | ls' <- list]
-    (z, o) = count (0, 0) ls
-    lcb    = if o < z then '1' else '0'
+                        | otherwise = leastCommonBit (pos+1) [k | k <- list, k !! pos == lcb] where
+                            ls     = [ls' !! pos | ls' <- list]
+                            (z, o) = count (0, 0) ls
+                            lcb    = if o < z then '1' else '0'
 
 mostCommonBit :: Int -> [String] -> [String] 
 mostCommonBit pos list | length list == 1 = list
